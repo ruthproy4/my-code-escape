@@ -17,6 +17,8 @@ const queryClient = new QueryClient();
 const AppRoutes = () => {
   const { user, profile, loading } = useAuth();
 
+  console.log('AppRoutes - User:', user?.id, 'Profile:', profile, 'Loading:', loading);
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -27,6 +29,7 @@ const AppRoutes = () => {
 
   // Si el usuario está logueado, redirigir según su rol
   if (user && profile) {
+    console.log('User logged in with role:', profile.role);
     return (
       <Routes>
         <Route 

@@ -15,11 +15,15 @@ export const useAuth = () => {
 
   const fetchProfile = async (userId: string) => {
     try {
+      console.log('Fetching profile for user:', userId);
       const { data, error } = await supabase
         .from('profiles')
         .select('*')
         .eq('id', userId)
         .maybeSingle();
+      
+      console.log('Profile data received:', data);
+      console.log('Profile error:', error);
       
       if (error && error.code !== 'PGRST116') {
         console.error('Error fetching profile:', error);
